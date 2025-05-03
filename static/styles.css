@@ -1,0 +1,117 @@
+/* swally.css */
+
+
+/* swally.css */
+
+/* General styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #2e2e2e;
+    color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Content wrapper */
+.content {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #3c3c3c;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #f7d774; /* like beer foam */
+    margin-bottom: 1.5rem;
+}
+
+/* Links */
+a {
+    color: #77dd77; /* minty green */
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+a:hover {
+    color: #f7d774;
+    text-decoration: underline;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background-color: #4a4a4a;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: center;
+    border-bottom: 1px solid #666;
+}
+
+th {
+    background-color: #2b2b2b;
+    color: #f7d774;
+}
+
+td a {
+    color: #ff7b7b; /* fun reddish-pink for delete */
+}
+
+td a:hover {
+    color: #ff4c4c;
+}
+
+/* Forms */
+form {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid #777;
+}
+
+.form-row {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #ddd;
+    color: #222;
+    font-size: 1rem;
+}
+
+input[type="submit"] {
+    background-color: #f7d774;
+    color: #222;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #ffdd57;
+}

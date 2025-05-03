@@ -1,0 +1,67 @@
+
+
+{%extends 'base.html' %}
+
+{%block head%}<title>Edit Drinks</title> {%endblock%}
+
+{%block body%}
+
+    <div class="content">
+        <h1>Drinks List</h1>
+        <a href="/">Home</a>
+
+        {% with messages = get_flashed_messages(with_categories=true)%}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages%}
+                        <p class="{{category}}">{{message}}</p>
+                    {%endfor%}
+                </div>
+            {%endif%}
+        {%endwith%}    
+
+
+
+
+        <table>
+            <tr>
+                <th>Drink</th>
+                <th>Units</th>
+            </tr>
+            {%for drink in drinks%}
+                <tr>
+                    <td>{{drink.name}}</td>
+                    <td>{{drink.alcohol_units}}</td>
+                    <td>
+                        <a href="/delete_drink/{{drink.id}}">Delete</a>
+                    </td>
+    
+                </tr>
+            {%endfor%}    
+        </table>
+    
+        <form action="/edit_drinks" method="POST">
+            
+            <div class="form-row">
+                <label for= "drink name" >Drink Name</label>
+                <input type="text" id="drink name" name="drink name" >
+            </div>
+            <div class="form-row">
+                <label for= "alcohol units" >Units of Alcohol</label>
+                <input type="number" id="alcohol units" name="alcohol units" step="0.01" min="0" >
+            </div>
+     
+            <input type="submit" value="Add Drink" id="btn_add">
+    
+    
+    
+    
+        </form>
+
+
+
+    </div>
+    
+
+
+{%endblock%}

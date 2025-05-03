@@ -1,0 +1,21 @@
+
+{%extends 'base.html' %}
+
+{%block head%}<title>Statistics</title> {%endblock%}
+
+
+
+
+{%block body%}
+<div class="content">
+    <h1>Statistics</h1>
+    <a href="/">Home</a>
+
+    <p>Total number of alcohol units consumed: {{total_units | round(2)}}</p>
+
+
+</div>
+
+
+
+{%endblock%}
