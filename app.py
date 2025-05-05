@@ -158,6 +158,19 @@ def statistics():
     # return render_template("statistics.html", total_units=total_units)
 
     time_now =datetime.now(timezone.utc)
+    current_year = time_now.year
+    current_month = time_now.month
+    current_week = time_now.isocalendar()[1]
+    
+    sql_month = text("""
+        SELECT SUM(se.servings * d.alcohol_units)
+        FROM sesh_entry se
+        JOIN drink d ON se.drink_id = d.id
+        WHERE EXTRACT (YEAR FROM date) = :year
+        AND EXTRACT (MONTH FROM date) = :month
+    """)
+
+    result_month = db.session.execute(sql_month, {"year": current_year, "month": current_month}).fetchall()
 
     sql_tu = text("""
         SELECT SUM(se.servings * d.alcohol_units)
@@ -167,8 +180,8 @@ def statistics():
     """)
     result_tu =db.session.execute(sql_tu).scalar()
 
-    
-    return render_template("statistics.html", total_units = result_tu)
+
+    return render_template("statistics.html", total_units = result_tu, month_units = result_month )
 
 
 
