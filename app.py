@@ -162,15 +162,34 @@ def statistics():
     current_month = time_now.month
     current_week = time_now.isocalendar()[1]
     
+    # sql_month = text("""
+    #     SELECT SUM(se.servings * d.alcohol_units)
+    #     FROM sesh_entry se
+    #     JOIN drink d ON se.drink_id = d.id
+    #     WHERE EXTRACT (YEAR FROM date) = :year
+    #     AND EXTRACT (MONTH FROM date) = :month
+    # """)
+
+    # sql_month = text("""
+    #     SELECT SUM(se.servings * d.alcohol_units)
+    #     FROM sesh_entry se
+    #     JOIN drink d ON se.drink_id = d.id
+    #     WHERE strftime('%Y', se.date) = :year
+    #     AND strftime('%m', se.date) = :month
+    # """)
+
     sql_month = text("""
         SELECT SUM(se.servings * d.alcohol_units)
         FROM sesh_entry se
         JOIN drink d ON se.drink_id = d.id
-        WHERE EXTRACT (YEAR FROM date) = :year
-        AND EXTRACT (MONTH FROM date) = :month
+        JOIN sesh s ON se.sesh_id = s.id
+        WHERE strftime('%Y', s.date) = :year
+        AND strftime('%m', s.date) = :month
     """)
 
-    result_month = db.session.execute(sql_month, {"year": current_year, "month": current_month}).fetchall()
+    # result_month = db.session.execute(sql_month, {"year": current_year, "month": current_month}).scalar()
+
+    result_month = db.session.execute(sql_month,{"year": str(current_year), "month": f"{current_month:02d}"}).scalar()
 
     sql_tu = text("""
         SELECT SUM(se.servings * d.alcohol_units)
